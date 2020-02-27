@@ -36,3 +36,9 @@ S3 /   O   \
    |   |   |
    |
 S4 |
+
+
+V7
+
+Ported Kat's Color Wheel code into new COmmand Structure format.
+Added autorotate command to turn FRC color wheel 4.25 revolutions.
