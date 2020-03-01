@@ -65,15 +65,23 @@ public final class Constants {
     public static final double kMoveLimit = 1.0; //Maximum Move Overide Limit
     public static final double kTurnLimit = 1.0; //Maximum Turn Overide Limit
 
-    public static final double kMoveMinThreshold = 0.25; 
-    public static final double kTurnMinThreshold = 0.25;
-//Targeting Settings
-    public static final double kTargetMove = 0.5; 
-    public static final double kTargetTurn = 0.05;
-    public static final double kMinTargetOffset = 0.25; //Min angle to be on target
-    public static final double kTurnMaxTarget = 0.5; //Squared result(~.25) Max turn speed during target acquisition
-    public static final boolean kDebug = true;
+    public static final double kTurnScaling = 0.8;  //Scale value for turns
 
+    public static final double kMoveMinThreshold = 0.1; 
+    public static final double kTurnMinThreshold = 0.1;
+//Targeting Settings
+    public static final double kTargetMove = 0.05; //scaling constant
+    public static final double kTargetMoveMax = 0.6;
+    public static final double kTargetMoveMinThreshold = 0.3; 
+
+    public static final double kTargetTurn = 0.05; //scaling constant
+    public static final double kTargetTurnMax = 0.6; //Squared result(~.25) Max turn speed during target acquisition
+    public static final double kTargetTurnMinThreshold = 0.3;
+    
+
+    public static final double kMinTargetOffset = 0.25; //Min offset angle to be on target
+    public static final boolean kDebug = true;
+    
 //Intake Motor Settings
     public static final double kIntakeSpeed = 0.5; //Speed of Intake Motor
 
@@ -108,6 +116,7 @@ public final class Constants {
  //public static final double kColorWheelEncRevolutions = 4.25; //TESTING, replace with above
  public static final double kColorWheelEncPPR = 7.0; //ENcoder pulses per revolution
  public static final double kColorWheelEncGearRatio = 27.0; //kEnc*number of revolutions
+
 
     
 

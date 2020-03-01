@@ -62,17 +62,29 @@ public class LimelightAutoAlign extends CommandBase {
 
       double turnAlign = tx * Constants.kTargetTurn;
 
-      if (Math.abs(turnAlign)> Constants.kTurnMaxTarget) {
-        turnAlign = Constants.kTurnMaxTarget * Math.signum(turnAlign);
+      if (Math.abs(turnAlign)> Constants.kTargetTurnMax) {
+        turnAlign = Constants.kTargetTurnMax * Math.signum(tx);
       }
 
-      if ((Math.abs(turnAlign) < Constants.kTurnMinThreshold) && (Math.abs(tx)> Constants.kMinTargetOffset)){
+      if ((Math.abs(turnAlign) < Constants.kTargetTurnMinThreshold) && (Math.abs(tx)> Constants.kMinTargetOffset)){
         //Set minimum turn speed if turnAlign < threshold and off to target still exists
-        turnAlign = Constants.kTurnMinThreshold;
+        turnAlign = Constants.kTargetTurnMinThreshold * Math.signum(tx);
+      }
+
+      double moveAlign = -ty * Constants.kTargetMove;
+
+      if (Math.abs(moveAlign)> Constants.kTargetMoveMax) {
+        moveAlign = Constants.kTargetMoveMax * Math.signum(-ty);
+      }
+
+      if ((Math.abs(moveAlign) < Constants.kTargetMoveMinThreshold) && (Math.abs(ty)> Constants.kMinTargetOffset)){
+        //Set minimum turn speed if turnAlign < threshold and off to target still exists
+        moveAlign = Constants.kTargetMoveMinThreshold * Math.signum(-ty);
       }
 
 
-      m_driveTrain.targetDrive(m_move.getAsDouble(), turnAlign, m_throttle.getAsDouble());
+//      m_driveTrain.targetDrive(m_move.getAsDouble(), turnAlign, m_throttle.getAsDouble());
+      m_driveTrain.targetDrive(moveAlign, turnAlign, m_throttle.getAsDouble());
       //System.out.println("LL-Execute");
 
     }

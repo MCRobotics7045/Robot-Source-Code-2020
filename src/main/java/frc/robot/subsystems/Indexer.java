@@ -29,11 +29,11 @@ public class Indexer extends SubsystemBase {
   //Light Beam Switches are TRUE when no ball is present
   public DigitalInput swShooter = new DigitalInput(Constants.SWITCH_S1_SHOOTER_DIO_PORT);
   public DigitalInput swMidIndex = new DigitalInput(Constants.SWITCH_S2_MID_INDEX_DIO_PORT);
-  public DigitalInput swStartIndex = new DigitalInput(Constants.SWITCH_S3_START_INDEX_DIO_PORT);
+  //public DigitalInput swStartIndex = new DigitalInput(Constants.SWITCH_S3_START_INDEX_DIO_PORT);
   public DigitalInput swIntake = new DigitalInput(Constants.SWITCH_S4_INTAKE_DIO_PORT);
 
   //public static Counter cellCount = new Counter(); //Robot initiall loaded with 3 power cells.
-  public static int balls = 1;
+  public static int balls = 0;
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -47,7 +47,7 @@ public class Indexer extends SubsystemBase {
     Shuffleboard.getTab("Shooter").add("Indexer Encoder", encoder);
     Shuffleboard.getTab("Shooter").add("Switch-Shooter", swShooter);
     Shuffleboard.getTab("Shooter").add("Switch-Mid", swMidIndex);
-    Shuffleboard.getTab("Shooter").add("Switch-Start", swStartIndex);
+    //Shuffleboard.getTab("Shooter").add("Switch-Start", swStartIndex);
     Shuffleboard.getTab("Shooter").add("Switch-Intake", swIntake);
 
 

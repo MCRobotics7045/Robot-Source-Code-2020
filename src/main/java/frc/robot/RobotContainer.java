@@ -30,6 +30,7 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.Constants;
 
 
@@ -47,9 +48,9 @@ public class RobotContainer {
   private final LimeLight limeLight = new LimeLight(false);
   private final Intake intake = new Intake();
   private final Indexer indexer = new Indexer();
-  private final CommandBase m_autonomousCommand = new Autonomous(indexer);
   private final Shooter m_shooter = new Shooter();
   private final ColorWheelSubsystem  m_color_wheel = new ColorWheelSubsystem();
+  private final CommandBase m_autonomousCommand = new Autonomous(driveTrain, limeLight, indexer, m_shooter, intake);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -60,6 +61,8 @@ public class RobotContainer {
     SmartDashboard.putData(indexer);
     //SmartDashboard.putData(intake);
     //  SmartDashboard.putData(m_shooter);
+
+
 
     driveTrain.setDefaultCommand(new DriveCommand(driveTrain,() -> -joystick.getY(), () -> joystick.getZ(), () -> -joystick.getThrottle()));
     
