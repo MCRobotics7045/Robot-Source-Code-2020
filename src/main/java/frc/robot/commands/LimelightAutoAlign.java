@@ -104,5 +104,13 @@ public class LimelightAutoAlign extends CommandBase {
   public boolean isFinished() {
     //System.out.println("LL-Finished");
     return false;
+
+    //Stop command if target acquired and X and Y offsets are less than kMinTagetOffset e.g. 0.25 degrees
+    //if (m_limeLight.isTarget() && ((Math.abs(m_limeLight.getTx())) < Constants.kMinTargetOffset) && ((Math.abs(m_limeLight.getTy())) < Constants.kMinTargetOffset))){
+    //  return true;
+    //}
+    //else{
+    //  return false;
+    //}
   }
 }

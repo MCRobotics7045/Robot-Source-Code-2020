@@ -20,6 +20,7 @@ import frc.robot.commands.IndexerCommand;
 import frc.robot.commands.FireCommand;
 import frc.robot.commands.LimelightAutoAlign;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ShooterToggleCommand;
 import frc.robot.commands.IntakeFwdCommand;
 import frc.robot.commands.IntakeRevCommand;
 
@@ -44,14 +45,16 @@ public class Autonomous extends SequentialCommandGroup {
     //super (new FireCommand(indexer, shooter), new FireCommand(indexer, shooter), new FireCommand(indexer, shooter));
     
     addCommands(
-      //new DriveCommand(driveTrain, move, turn, throttle)
+      //new ShooterToggleCommand(chooter),
       //new LimelightAutoAlign(driveTrain, limeLight, move, turn),
       //new FireCommand(indexer, shooter),
+      //new WaitCommand(2),
       //new FireCommand(indexer, shooter),
+      //new WaitCommand(2),
       //new FireCommand(indexer, shooter)
 
       //test
-      new IntakeFwdCommand(intake),
+      new IntakeFwdCommand(intake), 
       new WaitCommand(2),
       new IntakeFwdCommand(intake),
       new WaitCommand(2),

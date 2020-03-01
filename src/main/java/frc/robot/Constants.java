@@ -32,6 +32,7 @@ public final class Constants {
 	public static final int JOYSTICK_BUTTON_INTAKE_FWD = 7;
     public static final int JOYSTICK_BUTTON_INTAKE_REV = 8;
     public static final int JOYSTICK_BUTTON_INDEXER_ADV = 3;
+    public static final int JOYSTICK_BUTTON_INDEXER_REV = 5;
     public static final int JOYSTICK_BUTTON_LOAD_MAGAZINE = 4;
     public static final int JOYSTICK_BUTTON_SHOOTER_MOTOR = 11;
     public static final int JOYSTICK_BUTTON_COLOR_WHEEL_AUTO = 12;
@@ -90,7 +91,10 @@ public final class Constants {
     public static final double kIndexerSpeed = 0.4; //Speed of the Indexer Motor
     public static final double kEncRevolutions = 1.0-kIndexerSpeed/10.0; //# of revolution
 	public static final double kEncPPR = 7.0; //ENcoder pulses per revolution
-	public static final double kEncGearRatio = 27.0; //kEnc*number of revolutions
+    public static final double kEncGearRatio = 27.0; //kEnc*number of revolutions
+    
+    public static final double kMaxMagazineBalls = 5;
+    public static final int kInitMagazineBalls = 3;
 
 //Shooter Constants
    //PID Values

@@ -19,6 +19,7 @@ import frc.robot.commands.LoadMagazineCommand;
 import frc.robot.commands.IntakeFwdCommand;
 import frc.robot.commands.IntakeRevCommand;
 import frc.robot.commands.IndexerCommand;
+import frc.robot.commands.IndexerRevCommand;
 import frc.robot.commands.ShooterToggleCommand;
 import frc.robot.commands.ColorWheelCommands.*; //CW from Kat
 import frc.robot.subsystems.ColorWheelSubsystem;
@@ -81,6 +82,7 @@ public class RobotContainer {
     final JoystickButton intakeFwd = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_INTAKE_FWD);
     final JoystickButton intakeRev = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_INTAKE_REV);
     final JoystickButton indexAdv = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_INDEXER_ADV);
+    final JoystickButton indexRev = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_INDEXER_REV);
     final JoystickButton shooterMotorControl = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOTER_MOTOR);
     final JoystickButton loadMagazine = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_LOAD_MAGAZINE);
     final JoystickButton firePowerCell = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOT);
@@ -99,6 +101,7 @@ public class RobotContainer {
     intakeFwd.toggleWhenPressed(new IntakeFwdCommand(intake));
     intakeRev.toggleWhenPressed(new IntakeRevCommand(intake));
     indexAdv.toggleWhenPressed(new IndexerCommand(indexer));
+    indexRev.toggleWhenPressed(new IndexerRevCommand(indexer));
     shooterMotorControl.toggleWhenPressed(new ShooterToggleCommand(m_shooter));
     loadMagazine.whenPressed(new LoadMagazineCommand(intake, indexer));
     firePowerCell.whenPressed(new FireCommand(indexer, m_shooter));

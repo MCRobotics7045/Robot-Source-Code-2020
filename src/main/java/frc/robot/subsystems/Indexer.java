@@ -33,7 +33,7 @@ public class Indexer extends SubsystemBase {
   public DigitalInput swIntake = new DigitalInput(Constants.SWITCH_S4_INTAKE_DIO_PORT);
 
   //public static Counter cellCount = new Counter(); //Robot initiall loaded with 3 power cells.
-  public static int balls = 0;
+  public static int balls = Constants.kInitMagazineBalls;
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -110,7 +110,7 @@ public class Indexer extends SubsystemBase {
   }
 
   public boolean isMagFUll() {
-    if (balls==5){
+    if (balls==Constants.kMaxMagazineBalls){
       return true;
     }
     else{
