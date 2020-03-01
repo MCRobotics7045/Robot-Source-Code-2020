@@ -59,16 +59,19 @@ public class LoadMagazineCommand extends CommandBase {
 
     //If 1 or 2 balls and StartIndexer switch is tripped, advance indexer to next switch. Ensure ball not already in shooter.
     //if ((m_indexer.swStart.get()==false) && ((Indexer.balls==1) || (Indexer.balls==2)) && !m_indexer.isShooterPrimed()) {
-    if ((m_indexer.swIntake.get()==false) && ((Indexer.balls==1) || (Indexer.balls==2)) && !m_indexer.isShooterPrimed()) {
+    //if ((m_indexer.swIntake.get()==false) && ((Indexer.balls==1) || (Indexer.balls==2)) && !m_indexer.isShooterPrimed()) {
+    if ((m_indexer.swIntake.get()==false) && (Indexer.balls==1)  && !m_indexer.isShooterPrimed()) {  
         m_indexer.start();
     }
     //Keep Advancing balls until middle switch
-    if (m_indexer.isRunning() && (Indexer.balls<3) && m_indexer.swMidIndex.get()==false){
+    //if (m_indexer.isRunning() && (Indexer.balls<3) && m_indexer.swMidIndex.get()==false){
+    if (m_indexer.isRunning() && (Indexer.balls<2) && m_indexer.swMidIndex.get()==false){
       m_indexer.stop(); 
     }
     
-    //Advanced 3 balls until ball next to shooter
-    if (m_indexer.swIntake.get()==false && (Indexer.balls>2) ) {
+    //Advanced 2 balls until ball next to shooter
+    //if (m_indexer.swIntake.get()==false && (Indexer.balls>2) ) {
+    if (m_indexer.swIntake.get()==false && (Indexer.balls>1) ) {  
       m_indexer.start();
     }
 
