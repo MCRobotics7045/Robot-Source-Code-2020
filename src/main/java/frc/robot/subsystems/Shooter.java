@@ -39,13 +39,12 @@ public class Shooter extends PIDSubsystem {
 
     //LiveWindow
     Shuffleboard.selectTab("Shooter");
-    Shuffleboard.getTab("Shooter").add("Shooter Motor", shooterMotor);
-    Shuffleboard.getTab("Shooter").add("Shooter Encoder", shooterEncoder);
-    Shuffleboard.getTab("Shooter").add("Controller", m_controller);
-
-   
-    //addChild("Shooter Motor", shooterMotor);
-    //addChild("Shooter Encoder", shooterEncoder);
+    Shuffleboard.getTab("Shooter").add("Shooter Motor", shooterMotor)
+        .withPosition(1,0);
+    //Shuffleboard.getTab("Shooter").add("Shooter Encoder", shooterEncoder)
+    //    .withPosition(1,1);
+    //Shuffleboard.getTab("Shooter").add("Controller", m_controller)
+    //    .withPosition(0,3);
 
   }
 
@@ -57,8 +56,8 @@ public class Shooter extends PIDSubsystem {
   public void useOutput(double output, double setpoint) {
     shooterMotor.setVoltage(output + shooterFeedforward.calculate(setpoint));
 
-    System.out.printf("Output: %.3f   newset: %.3f     getRate: %.2f    AtSet: %b", output, output + shooterFeedforward.calculate(setpoint), shooterEncoder.getRate(), m_controller.atSetpoint());
-    System.out.println();
+    //System.out.printf("Output: %.3f   newset: %.3f     getRate: %.2f    AtSet: %b", output, output + shooterFeedforward.calculate(setpoint), shooterEncoder.getRate(), m_controller.atSetpoint());
+    //System.out.println();
     
   }
   @Override
@@ -85,7 +84,7 @@ public class Shooter extends PIDSubsystem {
    */
   public boolean isRunning() {
     
-    if (shooterMotor.getSpeed() > 0.0){  
+    if (Math.abs(shooterMotor.getSpeed()) > 0.0){  
       return true;
     }
     else{

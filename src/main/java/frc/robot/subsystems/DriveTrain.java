@@ -46,6 +46,11 @@ public class DriveTrain extends SubsystemBase {
     drive.arcadeDrive(0, 0);
 
   }
+  public void stop(){
+
+    drive.arcadeDrive(0, 0);
+
+  }
 
  
   //@Override

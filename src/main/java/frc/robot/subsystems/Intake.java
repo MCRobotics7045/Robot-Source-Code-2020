@@ -28,7 +28,8 @@ public class Intake extends SubsystemBase {
     //LiveWindow
     //addChild("Intake Motor", intakeMotor);
     Shuffleboard.selectTab("Shooter");
-    Shuffleboard.getTab("Shooter").add("Intake Motor", intakeMotor);
+    Shuffleboard.getTab("Shooter").add("Intake Motor", intakeMotor)
+        .withPosition(1,2);
   }
 
   //Start the intake motor

@@ -73,14 +73,15 @@ public final class Constants {
 //Targeting Settings
     public static final double kTargetMove = 0.05; //scaling constant
     public static final double kTargetMoveMax = 0.6;
-    public static final double kTargetMoveMinThreshold = 0.3; 
+    public static final double kTargetMoveMinThreshold = 0.4; 
 
-    public static final double kTargetTurn = 0.05; //scaling constant
-    public static final double kTargetTurnMax = 0.6; //Squared result(~.25) Max turn speed during target acquisition
+    public static final double kTargetTurn = 0.03; //scaling constant
+    public static final double kTargetTurnMax = 0.4; //Squared result(~.16) Max turn speed during target acquisition
     public static final double kTargetTurnMinThreshold = 0.3;
     
 
-    public static final double kMinTargetOffset = 0.25; //Min offset angle to be on target
+    public static final double kMinXTargetOffset = 2.5; //Min offset angle to be on target
+    public static final double kMinYTargetOffset = 0.5; //Min offset angle to be on target
     public static final boolean kDebug = true;
     
 //Intake Motor Settings

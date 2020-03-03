@@ -86,9 +86,10 @@ public class RobotContainer {
     final JoystickButton shooterMotorControl = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOTER_MOTOR);
     final JoystickButton loadMagazine = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_LOAD_MAGAZINE);
     final JoystickButton firePowerCell = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOT);
-    final JoystickButton autoRotateColorWHeel = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_COLOR_WHEEL_AUTO);
+    //final JoystickButton autoRotateColorWHeel = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_COLOR_WHEEL_AUTO);
 
     //Xbox Bindings
+    
     final JoystickButton buttonRED = new JoystickButton(xbox, Constants.joystickRedButton);
     final JoystickButton buttonYELLOW = new JoystickButton(xbox, Constants.joystickYellowButton);
     final JoystickButton buttonGREEN = new JoystickButton(xbox, Constants.joystickGreenButton);
@@ -96,6 +97,7 @@ public class RobotContainer {
     final JoystickButton buttonLB = new JoystickButton(xbox, Constants.joystickLBButton);
     final JoystickButton buttonRB = new JoystickButton(xbox, Constants.joystickRBButton);
   
+
     //Joystick COmmands
     aim.whileHeld(new LimelightAutoAlign(driveTrain, limeLight, () -> -joystick.getY(), () -> -joystick.getThrottle()));
     intakeFwd.toggleWhenPressed(new IntakeFwdCommand(intake));
@@ -105,9 +107,10 @@ public class RobotContainer {
     shooterMotorControl.toggleWhenPressed(new ShooterToggleCommand(m_shooter));
     loadMagazine.whenPressed(new LoadMagazineCommand(intake, indexer));
     firePowerCell.whenPressed(new FireCommand(indexer, m_shooter));
-    autoRotateColorWHeel.whenPressed(new RotateColorWheelCommand(m_color_wheel));
+    //autoRotateColorWHeel.whenPressed(new RotateColorWheelCommand(m_color_wheel));
 
     //Xbox Color WHeel Commands
+    
     buttonRED.whileHeld(new RedCommand(m_color_wheel));
     buttonYELLOW.whileHeld(new YellowCommand(m_color_wheel));
     buttonGREEN.whileHeld(new GreenCommand(m_color_wheel));
@@ -129,5 +132,16 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
   // An ExampleCommand will run in autonomous
     return m_autonomousCommand;
+  }
+
+  public void turnOffLimelightLED(){
+    limeLight.setLedMode(0);
+  }
+
+  public void stopAllMotors() {
+    driveTrain.stop();
+    intake.stop();
+    m_shooter.stop();
+    indexer.stop();
   }
 }

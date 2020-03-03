@@ -15,6 +15,7 @@ import frc.robot.subsystems.DriveTrain;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public class LimelightAutoAlign extends CommandBase {
   DriveTrain m_driveTrain;
@@ -41,6 +42,7 @@ public class LimelightAutoAlign extends CommandBase {
     //m_driveTrain.manualDrive(0, 0, 1);
     m_limeLight.setPipeline(0);
     m_limeLight.setCameraMode(0);
+    //m_limeLight.setLedMode(1); //turn on LED
     //System.out.println("LL-Initialize");
   }
 
@@ -51,24 +53,31 @@ public class LimelightAutoAlign extends CommandBase {
     
     SmartDashboard.putBoolean("Camera has target", isTarget);
 
+    //isTarget = true; //TESTING
     if (isTarget){
       double tx = m_limeLight.getTx();
       double ty = m_limeLight.getTy();
       double ta = m_limeLight.getTa();
 
+
       SmartDashboard.putNumber("Camera tx", tx);
       SmartDashboard.putNumber("Camera ty", ty);
       SmartDashboard.putNumber("Camera ta", ta);
+      //tx=5.0; //TESTING
 
       double turnAlign = tx * Constants.kTargetTurn;
 
+      //Does it exceed Maximum Turn Speed?
       if (Math.abs(turnAlign)> Constants.kTargetTurnMax) {
         turnAlign = Constants.kTargetTurnMax * Math.signum(tx);
       }
 
-      if ((Math.abs(turnAlign) < Constants.kTargetTurnMinThreshold) && (Math.abs(tx)> Constants.kMinTargetOffset)){
-        //Set minimum turn speed if turnAlign < threshold and off to target still exists
+       //Set minimum turn speed if turnAlign < threshold and offset to target still exists
+      if ((Math.abs(turnAlign) < Constants.kTargetTurnMinThreshold) && (Math.abs(tx)> Constants.kMinXTargetOffset)){
         turnAlign = Constants.kTargetTurnMinThreshold * Math.signum(tx);
+      }
+      if ((Math.abs(tx)<Constants.kMinXTargetOffset)){
+        turnAlign=0.0;
       }
 
       double moveAlign = -ty * Constants.kTargetMove;
@@ -77,24 +86,33 @@ public class LimelightAutoAlign extends CommandBase {
         moveAlign = Constants.kTargetMoveMax * Math.signum(-ty);
       }
 
-      if ((Math.abs(moveAlign) < Constants.kTargetMoveMinThreshold) && (Math.abs(ty)> Constants.kMinTargetOffset)){
+      if ((Math.abs(moveAlign) < Constants.kTargetMoveMinThreshold) && (Math.abs(ty)> Constants.kMinYTargetOffset)){
         //Set minimum turn speed if turnAlign < threshold and off to target still exists
         moveAlign = Constants.kTargetMoveMinThreshold * Math.signum(-ty);
       }
-
-
-//      m_driveTrain.targetDrive(m_move.getAsDouble(), turnAlign, m_throttle.getAsDouble());
+      if ((Math.abs(ty)<Constants.kMinYTargetOffset)){
+        moveAlign=0.0;
+      }
+      System.out.print("Turn =");
+      System.out.print(turnAlign);
+      System.out.print("   tX =");
+      System.out.print(tx);
+      System.out.print("   Move  =");
+      System.out.print(moveAlign);
+      System.out.print("   tY =");
+      System.out.println(ty);
+     // m_driveTrain.targetDrive(m_move.getAsDouble(), turnAlign, m_throttle.getAsDouble());
       m_driveTrain.targetDrive(moveAlign, turnAlign, m_throttle.getAsDouble());
       //System.out.println("LL-Execute");
 
-    }
+    } //isTarget
 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //m_driveTrain.manualDrive(0,0,1);
+    m_driveTrain.manualDrive(0,0,1);
     //m_limeLight.setLedMode(0);
     //System.out.println("LL-End/Interupted");
   }
@@ -103,14 +121,17 @@ public class LimelightAutoAlign extends CommandBase {
   @Override
   public boolean isFinished() {
     //System.out.println("LL-Finished");
-    return false;
+    
+    //return false;
 
     //Stop command if target acquired and X and Y offsets are less than kMinTagetOffset e.g. 0.25 degrees
-    //if (m_limeLight.isTarget() && ((Math.abs(m_limeLight.getTx())) < Constants.kMinTargetOffset) && ((Math.abs(m_limeLight.getTy())) < Constants.kMinTargetOffset))){
-    //  return true;
-    //}
-    //else{
-    //  return false;
-    //}
+    if (m_limeLight.isTarget() && ((Math.abs(m_limeLight.getTx())) < Constants.kMinXTargetOffset) && ((Math.abs(m_limeLight.getTy())) < Constants.kMinYTargetOffset)){
+      System.out.println("LimeLight End");
+      
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }

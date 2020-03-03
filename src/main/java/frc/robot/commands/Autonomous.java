@@ -45,22 +45,24 @@ public class Autonomous extends SequentialCommandGroup {
     //super (new FireCommand(indexer, shooter), new FireCommand(indexer, shooter), new FireCommand(indexer, shooter));
     
     addCommands(
-      //new ShooterToggleCommand(chooter),
-      //new LimelightAutoAlign(driveTrain, limeLight, move, turn),
-      //new FireCommand(indexer, shooter),
-      //new WaitCommand(2),
-      //new FireCommand(indexer, shooter),
-      //new WaitCommand(2),
-      //new FireCommand(indexer, shooter)
+      new ShooterToggleCommand(shooter),
+      new LimelightAutoAlign(driveTrain, limeLight, move, turn),
+      new FireCommand(indexer, shooter),
+      new WaitCommand(2),
+      new FireCommand(indexer, shooter),
+      new WaitCommand(2),
+      new FireCommand(indexer, shooter),
+      new WaitCommand(1),
+      new ShooterStopCommand(shooter)
 
       //test
-      new IntakeFwdCommand(intake), 
-      new WaitCommand(2),
-      new IntakeFwdCommand(intake),
-      new WaitCommand(2),
-      new IntakeRevCommand(intake),
-      new WaitCommand(2),
-      new IntakeRevCommand(intake)
+      //new IntakeFwdCommand(intake), 
+      //new WaitCommand(2),
+      //new IntakeFwdCommand(intake),
+      //new WaitCommand(2),
+      //new IntakeRevCommand(intake),
+      //new WaitCommand(2),
+      //new IntakeRevCommand(intake)
 
     ); 
   }

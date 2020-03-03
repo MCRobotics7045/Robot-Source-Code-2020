@@ -15,6 +15,8 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.util.Color;
 
 
 public class ColorWheelSubsystem extends SubsystemBase {
@@ -23,12 +25,17 @@ public class ColorWheelSubsystem extends SubsystemBase {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   public ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
   private final Encoder encoder = new Encoder(Constants.CW_ENCODER1_DIO_PORT_A, Constants.CW_ENCODER1_DIO_PORT_B);
-  /**
+  private Color detectedColor2 = colorSensor.getColor();
+ /**
    * Creates a new ColorWheel.
    */
   public ColorWheelSubsystem() {
     super();
     
+ Shuffleboard.getTab("Shooter").add("Color-Blue", detectedColor2.blue);
+ Shuffleboard.getTab("Shooter").add("Color-Green", detectedColor2.green);
+ Shuffleboard.getTab("Shooter").add("Color-Red", detectedColor2.red);
+
   }
 
   public void init(){
@@ -50,6 +57,12 @@ public class ColorWheelSubsystem extends SubsystemBase {
    //Start the color wheel motor
    public void start() {
     wheelSpark.set(Constants.kColorWheelSpeed);
+    detectedColor2 = colorSensor.getColor();
+    SmartDashboard.putNumber("Blue", detectedColor2.blue);
+    SmartDashboard.putNumber("Green", detectedColor2.green);
+    SmartDashboard.putNumber("Red", detectedColor2.red);
+
+    
   }
 
  //Reverse the color wheel motor

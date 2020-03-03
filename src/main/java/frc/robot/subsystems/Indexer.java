@@ -13,8 +13,14 @@ import frc.robot.Constants;
 //import frc.robot.commands.IndexerCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.cscore.HttpCamera;
+import edu.wpi.cscore.UsbCamera;
+
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+
 //import edu.wpi.first.wpilibj.Counter;
 //import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
@@ -43,14 +49,24 @@ public class Indexer extends SubsystemBase {
     //LiveWindow
     //addChild("Indexer Motor", indexerMotor);
     Shuffleboard.selectTab("Shooter");
-    Shuffleboard.getTab("Shooter").add("Indexer Motor", indexerMotor);
-    Shuffleboard.getTab("Shooter").add("Indexer Encoder", encoder);
-    Shuffleboard.getTab("Shooter").add("Switch-Shooter", swShooter);
-    Shuffleboard.getTab("Shooter").add("Switch-Mid", swMidIndex);
-    //Shuffleboard.getTab("Shooter").add("Switch-Start", swStartIndex);
-    Shuffleboard.getTab("Shooter").add("Switch-Intake", swIntake);
-
-
+    Shuffleboard.getTab("Shooter").add("Indexer Motor", indexerMotor)
+        .withPosition(1,1);
+    //Shuffleboard.getTab("Shooter").add("Indexer Encoder", encoder)
+    //    .withPosition(1,3);
+    Shuffleboard.getTab("Shooter").add("Switch-Shooter", swShooter)
+        //.withWidget(BuiltInWidgets.kTextView)
+        .withPosition(0,2);
+    Shuffleboard.getTab("Shooter").add("Switch-Mid", swMidIndex)
+        //.withWidget(BuiltInWidgets.kTextView)
+        .withPosition(0,1);//Shuffleboard.getTab("Shooter").add("Switch-Start", swStartIndex);
+    Shuffleboard.getTab("Shooter").add("Switch-Intake", swIntake)
+        //.withWidget(BuiltInWidgets.kTextView)
+        .withPosition(0,0);
+    //Shuffleboard.getTab("Shooter").add("Limelight", new HttpCamera("Limelight", "http://10.18.95.11:5800"))
+    //.withWidget(BuiltInWidgets.kCameraStream)
+    //.withPosition(3, 0)
+    //.withSize(3, 3);
+   
   }
 
   public void init(){
@@ -58,7 +74,7 @@ public class Indexer extends SubsystemBase {
   // There are 27*7 pulses per output shaft rotation
     encoder.setDistancePerPulse(1/(Constants.kEncGearRatio*Constants.kEncPPR));
     encoder.reset();
-    System.out.println("IndexerEncoder-INIT");
+    //System.out.println("IndexerEncoder-INIT");
   }
 
   //Start the Indexer motor for number of revolutions
@@ -102,7 +118,7 @@ public class Indexer extends SubsystemBase {
     //double speed = indexerMotor.getSpeed();
     //if (Math.abs(speed)> 0){
     //if (encoder.getDistance() < Constants.kEncRevolutions){  
-    if (indexerMotor.getSpeed() > 0.0){  
+    if (Math.abs(indexerMotor.getSpeed()) > 0.0){  
       return true;}
     else{
       return false;
