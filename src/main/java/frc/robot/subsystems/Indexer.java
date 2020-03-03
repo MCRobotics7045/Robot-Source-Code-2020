@@ -11,18 +11,16 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 //import frc.robot.commands.IndexerCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.cscore.HttpCamera;
-import edu.wpi.cscore.UsbCamera;
+//import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+//import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+//import edu.wpi.cscore.HttpCamera;
+//import edu.wpi.cscore.UsbCamera;
 
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-
-//import edu.wpi.first.wpilibj.Counter;
-//import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+//import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 
 /**
@@ -30,7 +28,7 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
  */
 public class Indexer extends SubsystemBase {
   private final PWMVictorSPX indexerMotor = new PWMVictorSPX(Constants.MOTOR_INDEXER_PORT);
-  private final Encoder encoder = new Encoder(Constants.ENCODER1_DIO_PORT_A, Constants.ENCODER1_DIO_PORT_B);
+  //private final Encoder encoder = new Encoder(Constants.ENCODER1_DIO_PORT_A, Constants.ENCODER1_DIO_PORT_B);
 
   //Light Beam Switches are TRUE when no ball is present
   public DigitalInput swShooter = new DigitalInput(Constants.SWITCH_S1_SHOOTER_DIO_PORT);
@@ -72,13 +70,14 @@ public class Indexer extends SubsystemBase {
   public void init(){
   // Configures the encoder's distance-per-pulse
   // There are 27*7 pulses per output shaft rotation
-    encoder.setDistancePerPulse(1/(Constants.kEncGearRatio*Constants.kEncPPR));
-    encoder.reset();
+    //encoder.setDistancePerPulse(1/(Constants.kEncGearRatio*Constants.kEncPPR));
+    //encoder.reset();
     //System.out.println("IndexerEncoder-INIT");
   }
 
   //Start the Indexer motor for number of revolutions
-  public void startRevolutions() {
+  
+  /*public void startRevolutions() {
     SmartDashboard.putNumber("Encoder", encoder.getDistance());
 
     if (encoder.getDistance() < Constants.kEncRevolutions){
@@ -91,6 +90,8 @@ public class Indexer extends SubsystemBase {
     }
   
   }
+*/
+
 
   //Start the Indexer
   public void start() {

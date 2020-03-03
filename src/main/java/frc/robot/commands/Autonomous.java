@@ -16,14 +16,9 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
-import frc.robot.commands.IndexerCommand;
 import frc.robot.commands.FireCommand;
 import frc.robot.commands.LimelightAutoAlign;
-import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ShooterToggleCommand;
-import frc.robot.commands.IntakeFwdCommand;
-import frc.robot.commands.IntakeRevCommand;
-
 
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -54,15 +49,6 @@ public class Autonomous extends SequentialCommandGroup {
       new FireCommand(indexer, shooter),
       new WaitCommand(1),
       new ShooterStopCommand(shooter)
-
-      //test
-      //new IntakeFwdCommand(intake), 
-      //new WaitCommand(2),
-      //new IntakeFwdCommand(intake),
-      //new WaitCommand(2),
-      //new IntakeRevCommand(intake),
-      //new WaitCommand(2),
-      //new IntakeRevCommand(intake)
 
     ); 
   }

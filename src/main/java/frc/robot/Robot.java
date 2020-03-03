@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
     //CameraServer.getInstance().startAutomaticCapture();
 
     //Advanced USB Camera Server
-    /*
+  
     new Thread(() -> {
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
       camera.setResolution(320 , 240);
@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
       }
 
     }).start();
-    */
+  
   }
 
   /**

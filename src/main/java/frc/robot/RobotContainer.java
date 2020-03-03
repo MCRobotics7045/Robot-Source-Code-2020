@@ -22,7 +22,10 @@ import frc.robot.commands.IndexerCommand;
 import frc.robot.commands.IndexerRevCommand;
 import frc.robot.commands.ShooterToggleCommand;
 import frc.robot.commands.ColorWheelCommands.*; //CW from Kat
+import frc.robot.commands.DartDownCommand;
+import frc.robot.commands.DartUpCommand;
 import frc.robot.subsystems.ColorWheelSubsystem;
+import frc.robot.subsystems.Dart;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Intake;
@@ -31,6 +34,7 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 import frc.robot.Constants;
 
@@ -51,6 +55,7 @@ public class RobotContainer {
   private final Indexer indexer = new Indexer();
   private final Shooter m_shooter = new Shooter();
   private final ColorWheelSubsystem  m_color_wheel = new ColorWheelSubsystem();
+  private final Dart m_dart = new Dart();
   private final CommandBase m_autonomousCommand = new Autonomous(driveTrain, limeLight, indexer, m_shooter, intake);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -86,7 +91,9 @@ public class RobotContainer {
     final JoystickButton shooterMotorControl = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOTER_MOTOR);
     final JoystickButton loadMagazine = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_LOAD_MAGAZINE);
     final JoystickButton firePowerCell = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOT);
-    //final JoystickButton autoRotateColorWHeel = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_COLOR_WHEEL_AUTO);
+    final POVButton dartUp = new POVButton(joystick, 0);
+    final POVButton dartDown = new POVButton(joystick, 180);
+    final JoystickButton autoRotateColorWHeel = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_COLOR_WHEEL_AUTO);
 
     //Xbox Bindings
     
@@ -107,7 +114,9 @@ public class RobotContainer {
     shooterMotorControl.toggleWhenPressed(new ShooterToggleCommand(m_shooter));
     loadMagazine.whenPressed(new LoadMagazineCommand(intake, indexer));
     firePowerCell.whenPressed(new FireCommand(indexer, m_shooter));
-    //autoRotateColorWHeel.whenPressed(new RotateColorWheelCommand(m_color_wheel));
+    autoRotateColorWHeel.whenPressed(new RotateColorWheelCommand(m_color_wheel));
+    dartUp.whenPressed(new DartUpCommand(m_dart));
+    dartDown.whenPressed(new DartDownCommand(m_dart));
 
     //Xbox Color WHeel Commands
     

@@ -36,6 +36,7 @@ public final class Constants {
     public static final int JOYSTICK_BUTTON_LOAD_MAGAZINE = 4;
     public static final int JOYSTICK_BUTTON_SHOOTER_MOTOR = 11;
     public static final int JOYSTICK_BUTTON_COLOR_WHEEL_AUTO = 12;
+    
 
  //XBOX Buttons
     public static final int joystickRedButton = 2;
@@ -46,8 +47,11 @@ public final class Constants {
     public static final int joystickRBButton = 6;   
 
 //DIO Ports
-   public static final int ENCODER1_DIO_PORT_A = 0;
-   public static final int ENCODER1_DIO_PORT_B = 1;
+   //public static final int ENCODER1_DIO_PORT_A = 0;
+   //public static final int ENCODER1_DIO_PORT_B = 1;
+   public static final int DART_UPPER_LIMIT_DIO_PORT = 0;
+   public static final int DART_LOWER_LIMIT_DIO_PORT = 1;
+
    public static final int SHOOTER_ENCODER_DIO_PORT_A = 2;
    public static final int SHOOTER_ENCODER_DIO_PORT_B = 3;
    public static final int CW_ENCODER1_DIO_PORT_A = 4;

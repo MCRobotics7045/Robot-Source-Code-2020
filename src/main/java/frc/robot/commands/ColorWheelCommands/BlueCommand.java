@@ -9,8 +9,8 @@ package frc.robot.commands.ColorWheelCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ColorWheelSubsystem;
 import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class BlueCommand extends CommandBase {
@@ -32,11 +32,13 @@ public class BlueCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Blue-Execute");
+    
     Color detectedColor = m_ColorWheelSubsystem.colorSensor.getColor();
-    SmartDashboard.putNumber("Blue", detectedColor.blue);
-    SmartDashboard.putNumber("Green", detectedColor.green);
-    SmartDashboard.putNumber("Red", detectedColor.red);
+
+    //System.out.println("Blue-Execute");
+    //SmartDashboard.putNumber("Blue", detectedColor.blue);
+    //SmartDashboard.putNumber("Green", detectedColor.green);
+    //SmartDashboard.putNumber("Red", detectedColor.red);
 
      if(detectedColor.blue > 0.35 && detectedColor.green > 0.4 && detectedColor.green < 0.5 && detectedColor.red < 0.2) {
      m_ColorWheelSubsystem.stop();
