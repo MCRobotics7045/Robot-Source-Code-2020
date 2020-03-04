@@ -9,19 +9,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-import frc.robot.subsystems.Dart;
+import frc.robot.subsystems.DartSubsystem;
+import frc.robot.Constants;
 
 
 public class DartUpCommand extends CommandBase {
-  private final Dart m_Dart;
+  private final DartSubsystem m_Dart;
   
    // Creates a new DartFwdCommand.
 
-  public DartUpCommand(Dart dart) {
+  public DartUpCommand(DartSubsystem dartvar) {
     super();
-    m_Dart = dart;
+    m_Dart = dartvar;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(dart);
+    addRequirements(dartvar);
     
   }
 
@@ -36,7 +37,17 @@ public class DartUpCommand extends CommandBase {
   public void execute() {
 
     m_Dart.up();
-    
+    System.out.print("Dart going UP - ");
+    System.out.println(m_Dart.dartPot.getVoltage());
+/*
+    //TOGGLE FUnction with no Limits
+    if (m_Dart.isRunning()){
+      m_Dart.stop();
+      }
+    else{
+      m_Dart.up();
+     }
+    */
   }
 
   // Called once the command ends or is interrupted.
@@ -55,7 +66,7 @@ public class DartUpCommand extends CommandBase {
  */
   @Override
   public boolean isFinished() {
-    if (m_Dart.upperLimit.get()==false){ //limit reached
+    if (m_Dart.dartVoltage() < Constants.kDartOutVoltage){ //limit reached
       return true;
     }
     else{

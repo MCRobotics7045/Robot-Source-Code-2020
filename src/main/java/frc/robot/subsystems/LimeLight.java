@@ -18,7 +18,7 @@ public class LimeLight extends SubsystemBase {
   public int ledMode, camMode;
 
   /**
-   * Creates a new LimeLight.
+   * Creates a new LimeLight. Refer to http://docs.limelightvision.io/en/latest/networktables_api.html
    */
   public LimeLight(boolean tunable) {
     this.tunable = tunable;

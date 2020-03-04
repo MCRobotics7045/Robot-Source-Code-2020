@@ -40,7 +40,7 @@ public class LimelightAutoAlign extends CommandBase {
     //m_driveTrain.manualDrive(0, 0, 1);
     m_limeLight.setPipeline(0);
     m_limeLight.setCameraMode(0);
-    //m_limeLight.setLedMode(1); //turn on LED
+    m_limeLight.setLedMode(3); //turn on=3 LED
     //System.out.println("LL-Initialize");
   }
 
@@ -111,7 +111,7 @@ public class LimelightAutoAlign extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_driveTrain.manualDrive(0,0,1);
-    //m_limeLight.setLedMode(0);
+    m_limeLight.setLedMode(1); //LED OFF=1 ON=3
     //System.out.println("LL-End/Interupted");
   }
 

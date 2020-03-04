@@ -9,7 +9,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.DigitalInput;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.Constants;
 
 //import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -18,23 +20,24 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 /**
  * Add your docs here.
  */
-public class Dart extends SubsystemBase {
-  private final PWMVictorSPX dartMotor = new PWMVictorSPX(Constants.MOTOR_INTAKE_PORT);
-  public DigitalInput upperLimit = new DigitalInput(Constants.DART_UPPER_LIMIT_DIO_PORT);
-  public DigitalInput lowerLimit = new DigitalInput(Constants.DART_LOWER_LIMIT_DIO_PORT);
-
+public class DartSubsystem extends SubsystemBase {
+  private final PWMVictorSPX dartMotor = new PWMVictorSPX(Constants.MOTOR_DART_PORT);
+  //public DigitalInput upperLimit = new DigitalInput(Constants.DART_UPPER_LIMIT_DIO_PORT);
+  //public DigitalInput lowerLimit = new DigitalInput(Constants.DART_LOWER_LIMIT_DIO_PORT);
+  public AnalogInput dartPot = new AnalogInput(Constants.DART_POT_PORT);
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public Dart(){
+  public DartSubsystem(){
     super();
-
+    
     //LiveWindow
     //addChild("Dart Motor", dartMotor);
     Shuffleboard.selectTab("Shooter");
-    Shuffleboard.getTab("Shooter").add("Dart Motor", dartMotor)
-        .withPosition(1,5);
+    Shuffleboard.getTab("Shooter").add("Dart Motor", dartMotor);
   }
+public void init(){
 
+}
   //Start the dart motor
   public void up() {
     dartMotor.set(Constants.kIntakeSpeed);
@@ -61,6 +64,10 @@ public class Dart extends SubsystemBase {
     else{
       return false;
     }
+  }
+
+  public double dartVoltage(){
+    return dartPot.getVoltage();
   }
 }
 

@@ -25,7 +25,7 @@ import frc.robot.commands.ColorWheelCommands.*; //CW from Kat
 import frc.robot.commands.DartDownCommand;
 import frc.robot.commands.DartUpCommand;
 import frc.robot.subsystems.ColorWheelSubsystem;
-import frc.robot.subsystems.Dart;
+import frc.robot.subsystems.DartSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Intake;
@@ -34,7 +34,7 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
+//import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 import frc.robot.Constants;
 
@@ -55,7 +55,7 @@ public class RobotContainer {
   private final Indexer indexer = new Indexer();
   private final Shooter m_shooter = new Shooter();
   private final ColorWheelSubsystem  m_color_wheel = new ColorWheelSubsystem();
-  private final Dart m_dart = new Dart();
+  private final DartSubsystem m_dart = new DartSubsystem();
   private final CommandBase m_autonomousCommand = new Autonomous(driveTrain, limeLight, indexer, m_shooter, intake);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -91,8 +91,10 @@ public class RobotContainer {
     final JoystickButton shooterMotorControl = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOTER_MOTOR);
     final JoystickButton loadMagazine = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_LOAD_MAGAZINE);
     final JoystickButton firePowerCell = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOT);
-    final POVButton dartUp = new POVButton(joystick, 0);
-    final POVButton dartDown = new POVButton(joystick, 180);
+    //final POVButton dartUp = new POVButton(joystick, 0);
+    //final POVButton dartDown = new POVButton(joystick, 180);
+    final JoystickButton dartUp = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_DART_UP);
+    final JoystickButton dartDown = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_DART_DOWN);
     final JoystickButton autoRotateColorWHeel = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_COLOR_WHEEL_AUTO);
 
     //Xbox Bindings
@@ -115,8 +117,10 @@ public class RobotContainer {
     loadMagazine.whenPressed(new LoadMagazineCommand(intake, indexer));
     firePowerCell.whenPressed(new FireCommand(indexer, m_shooter));
     autoRotateColorWHeel.whenPressed(new RotateColorWheelCommand(m_color_wheel));
-    dartUp.whenPressed(new DartUpCommand(m_dart));
-    dartDown.whenPressed(new DartDownCommand(m_dart));
+    //dartUp.whenPressed(new DartUpCommand(m_dart)); //POV
+    //dartDown.whenPressed(new DartDownCommand(m_dart));  //POV
+    dartUp.toggleWhenPressed(new DartUpCommand(m_dart));
+    dartDown.toggleWhenPressed(new DartDownCommand(m_dart));
 
     //Xbox Color WHeel Commands
     
@@ -144,7 +148,7 @@ public class RobotContainer {
   }
 
   public void turnOffLimelightLED(){
-    limeLight.setLedMode(0);
+    limeLight.setLedMode(1); //1 =OFF 3=ON
   }
 
   public void stopAllMotors() {

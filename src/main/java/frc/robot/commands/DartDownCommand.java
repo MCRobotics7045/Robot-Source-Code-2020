@@ -8,20 +8,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
-import frc.robot.subsystems.Dart;
+import frc.robot.Constants;
+import frc.robot.subsystems.DartSubsystem;
 
 
 public class DartDownCommand extends CommandBase {
-  private final Dart m_Dart;
+  private final DartSubsystem m_Dart;
   
    // Creates a new DartFwdCommand.
 
-  public DartDownCommand(Dart dart) {
+  public DartDownCommand(DartSubsystem dartvar) {
     super();
-    m_Dart = dart;
+    m_Dart = dartvar;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(dart);
+    addRequirements(dartvar);
     
   }
 
@@ -35,7 +35,21 @@ public class DartDownCommand extends CommandBase {
   @Override
   public void execute() {
 
-    m_Dart.down();
+    m_Dart.down(); 
+    //System.out.print("Dart going DOWN -");
+    //System.out.println(m_Dart.dartPot.getVoltage());
+   
+   /*
+   //TOGGLE FUNCTION WITH NO LIMITS
+    if (m_Dart.isRunning()){
+      m_Dart.stop();
+      
+      
+    }
+    else{
+      m_Dart.down();
+    }
+  */
     
   }
 
@@ -48,14 +62,14 @@ public class DartDownCommand extends CommandBase {
 
   // Returns true when the command should end. True to run once. 
   /*
- * Hall Effect Sensor
+ * Hall Effect Sensor - NOT WORKING. Switched to linear string potentiometer
  * Sensor is driven low in the presence of a magnetic field, and high impedance
  * when there is no magnet present
  * Use this as a limit switch.
  */
   @Override
   public boolean isFinished() {
-    if (m_Dart.lowerLimit.get()==false){ //limit reached
+    if (m_Dart.dartVoltage() > Constants.kDartInVoltage){ //limit reached
       return true;
     }
     else{

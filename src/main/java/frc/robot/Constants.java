@@ -25,7 +25,12 @@ public final class Constants {
     public static final int MOTOR_INDEXER_PORT = 5;        //H
     public static final int MOTOR_SHOOTER_PORT = 6;        //A
     public static final int MOTOR_COLOR_WHEEL_PORT = 7;
+    public static final int MOTOR_DART_PORT = 8;
 
+    // ANalog INput
+    public static final int DART_POT_PORT = 3;
+    public static final double kDartOutVoltage = 2.92; // Aprox 9-in extension
+    public static final double kDartInVoltage = 3.5; //Approx 13-in extension
 //Joystick Buttons 
     public static final int JOYSTICK_BUTTON_SHOOT = 1;
 	public static final int JOYSTICK_BUTTON_AIM = 2;
@@ -36,7 +41,8 @@ public final class Constants {
     public static final int JOYSTICK_BUTTON_LOAD_MAGAZINE = 4;
     public static final int JOYSTICK_BUTTON_SHOOTER_MOTOR = 11;
     public static final int JOYSTICK_BUTTON_COLOR_WHEEL_AUTO = 12;
-    
+    public static final int JOYSTICK_BUTTON_DART_UP = 9;
+    public static final int JOYSTICK_BUTTON_DART_DOWN = 10;
 
  //XBOX Buttons
     public static final int joystickRedButton = 2;
@@ -49,8 +55,8 @@ public final class Constants {
 //DIO Ports
    //public static final int ENCODER1_DIO_PORT_A = 0;
    //public static final int ENCODER1_DIO_PORT_B = 1;
-   public static final int DART_UPPER_LIMIT_DIO_PORT = 0;
-   public static final int DART_LOWER_LIMIT_DIO_PORT = 1;
+   // public static final int DART_UPPER_LIMIT_DIO_PORT = 1;
+   //public static final int DART_LOWER_LIMIT_DIO_PORT = 0;
 
    public static final int SHOOTER_ENCODER_DIO_PORT_A = 2;
    public static final int SHOOTER_ENCODER_DIO_PORT_B = 3;
@@ -118,14 +124,14 @@ public final class Constants {
 
  //Color Wheel Constants
  public static final double kColorWheelSpeed = 0.7; //Speed of the Color WHeel Motor
- public static final double kColorWheelDiameter = 4.0; //Diameter of compliant wheel installed on Color WHeel motor
+ public static final double kColorWheelDiameter = 2.0; //Diameter of compliant wheel installed on Color WHeel motor
  public static final double kFRCColorWheelDiameter = 32.0; //Diameter of FRC color wheel at competition
 
- public static final double kColorWheelEncRevolutions = 4.25*(kFRCColorWheelDiameter/kColorWheelDiameter); //# of revolution of CW Motor to spin FRC wheel 4.25 times.
+ public static final double kColorWheelEncRevolutions = 3.5*(kFRCColorWheelDiameter/kColorWheelDiameter); //# of revolution of CW Motor to spin FRC wheel 3.5 times.
  //public static final double kColorWheelEncRevolutions = 4.25; //TESTING, replace with above
  public static final double kColorWheelEncPPR = 7.0; //ENcoder pulses per revolution
  public static final double kColorWheelEncGearRatio = 27.0; //kEnc*number of revolutions
-
+ 
 
     
 
