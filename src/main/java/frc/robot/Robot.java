@@ -16,6 +16,8 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.DriverStation;
 
 
 /**
@@ -82,6 +84,41 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    String gameData;
+    gameData = DriverStation.getInstance().getGameSpecificMessage();
+    if(gameData.length() > 0)
+    {
+      switch (gameData.charAt(0))
+      {
+        case 'B' :
+          //Blue case code
+          SmartDashboard.putString("Go Color","BLUE");
+          
+          break;
+        case 'G' :
+          //Green case code
+          SmartDashboard.putString("Go Color","GREEN");
+    
+          break;
+        case 'R' :
+          //Red case code
+          SmartDashboard.putString("Go Color","RED");
+    
+          break;
+        case 'Y' :
+          //Yellow case code
+          SmartDashboard.putString("Go Color","YELLOW");
+    
+          break;
+        default :
+          //This is corrupt data
+          SmartDashboard.putString("Go Color","");
+          break;
+      }
+    } else {
+      //Code for no data received yet
+    }
   }
 
   /**

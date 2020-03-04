@@ -32,9 +32,9 @@ public class ColorWheelSubsystem extends SubsystemBase {
   public ColorWheelSubsystem() {
     super();
     
- Shuffleboard.getTab("Shooter").add("Color-Blue", detectedColor2.blue);
- Shuffleboard.getTab("Shooter").add("Color-Green", detectedColor2.green);
- Shuffleboard.getTab("Shooter").add("Color-Red", detectedColor2.red);
+ //Shuffleboard.getTab("Shooter").add("Color-Blue", detectedColor2.blue);
+ //Shuffleboard.getTab("Shooter").add("Color-Green", detectedColor2.green);
+ //Shuffleboard.getTab("Shooter").add("Color-Red", detectedColor2.red);
 
   }
 
