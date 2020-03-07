@@ -70,7 +70,7 @@ public class RobotContainer {
 
 
 
-    driveTrain.setDefaultCommand(new DriveCommand(driveTrain,() -> -joystick.getY(), () -> joystick.getZ(), () -> -joystick.getThrottle()));
+    driveTrain.setDefaultCommand(new DriveCommand(driveTrain,() -> -joystick.getY(), () -> joystick.getX(), () -> -joystick.getThrottle()));
     
         // Configure the button bindings
     configureButtonBindings();
