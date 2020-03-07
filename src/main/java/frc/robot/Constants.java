@@ -104,7 +104,7 @@ public final class Constants {
 	public static final double kEncPPR = 7.0; //ENcoder pulses per revolution
     public static final double kEncGearRatio = 27.0; //kEnc*number of revolutions
     
-    public static final double kMaxMagazineBalls = 5;
+    public static final double kMaxMagazineBalls = 4;
     public static final int kInitMagazineBalls = 3;
 
 //Shooter Constants
@@ -123,11 +123,11 @@ public final class Constants {
    public static final double kShooterMotorRampDown=1.0;//number of seconds to ramp down after last ball
 
  //Color Wheel Constants
- public static final double kColorWheelSpeed = 0.7; //Speed of the Color WHeel Motor
- public static final double kColorWheelDiameter = 2.0; //Diameter of compliant wheel installed on Color WHeel motor
+ public static final double kColorWheelSpeed = 1.0; //Speed of the Color WHeel Motor
+ public static final double kColorWheelDiameter = 3.0; //Diameter of compliant wheel installed on Color WHeel motor
  public static final double kFRCColorWheelDiameter = 32.0; //Diameter of FRC color wheel at competition
 
- public static final double kColorWheelEncRevolutions = 3.5*(kFRCColorWheelDiameter/kColorWheelDiameter); //# of revolution of CW Motor to spin FRC wheel 3.5 times.
+ public static final double kColorWheelEncRevolutions = 3.5*(kFRCColorWheelDiameter/kColorWheelDiameter); //# of revolution of CW Motor to spin FRC wheel  times.
  //public static final double kColorWheelEncRevolutions = 4.25; //TESTING, replace with above
  public static final double kColorWheelEncPPR = 7.0; //ENcoder pulses per revolution
  public static final double kColorWheelEncGearRatio = 27.0; //kEnc*number of revolutions
