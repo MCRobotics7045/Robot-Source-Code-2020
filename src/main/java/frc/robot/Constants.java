@@ -82,7 +82,7 @@ public final class Constants {
     public static final double kTurnMinThreshold = 0.1;
 //Targeting Settings
     public static final double kTargetMove = 0.05; //scaling constant
-    public static final double kTargetMoveMax = 0.6;
+    public static final double kTargetMoveMax = 0.7;
     public static final double kTargetMoveMinThreshold = 0.4; 
 
     public static final double kTargetTurn = 0.03; //scaling constant
