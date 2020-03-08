@@ -43,9 +43,11 @@ public class Autonomous extends SequentialCommandGroup {
       new ShooterToggleCommand(shooter),
       new LimelightAutoAlign(driveTrain, limeLight, move, turn),
       new FireCommand(indexer, shooter),
-      new WaitCommand(2),
+      new LimelightAutoAlign(driveTrain, limeLight, move, turn),
+      new WaitCommand(1),
       new FireCommand(indexer, shooter),
-      new WaitCommand(2),
+      new LimelightAutoAlign(driveTrain, limeLight, move, turn),
+      new WaitCommand(1),
       new FireCommand(indexer, shooter),
       new WaitCommand(1),
       new ShooterStopCommand(shooter)
