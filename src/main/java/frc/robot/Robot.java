@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
     //Advanced USB Camera Server
   
     new Thread(() -> {
-      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
       camera.setResolution(320 , 240);
 
       CvSink cvSink = CameraServer.getInstance().getVideo();
@@ -57,17 +57,55 @@ public class Robot extends TimedRobot {
       Mat source = new Mat();
       Mat output = new Mat();
 
+      UsbCamera cameraMag = CameraServer.getInstance().startAutomaticCapture(1);
+      cameraMag.setResolution(320 , 240);
+      //cameraMag.setFPS(4);
+      CvSink cvSinkMag = CameraServer.getInstance().getVideo();
+      CvSource outputStreamMag = CameraServer.getInstance().putVideo("Mag_Camera", 320, 240);
+    
+      Mat sourceMag = new Mat();
+      Mat outputMag = new Mat();
+
       while(!Thread.interrupted()) {
-        if (cvSink.grabFrame(source) == 0) {
+        if ((cvSink.grabFrame(source) == 0) || (cvSinkMag.grabFrame(sourceMag) == 0)) {
           continue;
         }
+        //if (cvSinkMag.grabFrame(sourceMag) == 0) {
+        //  continue;
+        // }
         Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-             
-        outputStream.putFrame(output);
+        Imgproc.cvtColor(sourceMag, outputMag, Imgproc.COLOR_BGR2GRAY);
+
+        outputStream.putFrame(output);                  
+        outputStreamMag.putFrame(outputMag);
       }
 
     }).start();
-  
+
+
+//Magazine Camera
+/*
+new Thread(() -> {
+  UsbCamera cameraMag = CameraServer.getInstance().startAutomaticCapture(1);
+  cameraMag.setResolution(320 , 240);
+  cameraMag.setFPS(4);
+  CvSink cvSinkMag = CameraServer.getInstance().getVideo();
+  CvSource outputStreamMag = CameraServer.getInstance().putVideo("Mag_Camera", 320, 240);
+
+  Mat sourceMag = new Mat();
+  Mat outputMag = new Mat();
+
+  while(!Thread.interrupted()) {
+    if (cvSinkMag.grabFrame(sourceMag) == 0) {
+      continue;
+    }
+    Imgproc.cvtColor(sourceMag, outputMag, Imgproc.COLOR_BGR2GRAY);
+         
+    outputStreamMag.putFrame(outputMag);
+  }
+
+}).start();
+*/
   }
 
   /**

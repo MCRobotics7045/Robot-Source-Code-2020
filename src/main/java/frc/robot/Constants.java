@@ -43,7 +43,7 @@ public final class Constants {
     public static final int JOYSTICK_BUTTON_COLOR_WHEEL_AUTO = 12;
     public static final int JOYSTICK_BUTTON_DART_UP = 9;
     public static final int JOYSTICK_BUTTON_DART_DOWN = 10;
-
+    public static final int JOYSTICK_BUTTON_RESET_BALLS = 6;
  //XBOX Buttons
     public static final int joystickRedButton = 2;
     public static final int joystickYellowButton = 4;
@@ -95,7 +95,7 @@ public final class Constants {
     public static final boolean kDebug = true;
     
 //Intake Motor Settings
-    public static final double kIntakeSpeed = 0.5; //Speed of Intake Motor
+    public static final double kIntakeSpeed = 0.75; //Speed of Intake Motor
 
 //Indexer  Encoder
 

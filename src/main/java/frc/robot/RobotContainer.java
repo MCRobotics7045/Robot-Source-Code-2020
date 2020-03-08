@@ -24,6 +24,7 @@ import frc.robot.commands.ShooterToggleCommand;
 import frc.robot.commands.ColorWheelCommands.*; //CW from Kat
 import frc.robot.commands.DartDownCommand;
 import frc.robot.commands.DartUpCommand;
+import frc.robot.commands.ResetBallCounterCommand;
 import frc.robot.subsystems.ColorWheelSubsystem;
 import frc.robot.subsystems.DartSubsystem;
 import frc.robot.subsystems.DriveTrain;
@@ -91,6 +92,7 @@ public class RobotContainer {
     final JoystickButton shooterMotorControl = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOTER_MOTOR);
     final JoystickButton loadMagazine = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_LOAD_MAGAZINE);
     final JoystickButton firePowerCell = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOT);
+    final JoystickButton resetBalls = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_RESET_BALLS);
     //final POVButton dartUp = new POVButton(joystick, 0);
     //final POVButton dartDown = new POVButton(joystick, 180);
     final JoystickButton dartUp = new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_DART_UP);
@@ -121,7 +123,7 @@ public class RobotContainer {
     //dartDown.whenPressed(new DartDownCommand(m_dart));  //POV
     dartUp.toggleWhenPressed(new DartUpCommand(m_dart));
     dartDown.toggleWhenPressed(new DartDownCommand(m_dart));
-
+    resetBalls.whenPressed(new ResetBallCounterCommand(indexer));
     //Xbox Color WHeel Commands
     
     buttonRED.whileHeld(new RedCommand(m_color_wheel));
